@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev" : "node app.js",
-    "test": "vitest"
+    "dev": "NODE_ENV=development nodemon app.js",
+    "test": "vitest --setupFiles dotenv/config"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
   "devDependencies": {
     "@types/node": "^25.2.0",
     "@types/pg": "^8.16.0",
+    "dotenv-cli": "^11.0.0",
     "prisma": "^7.3.0",
     "vitest": "^4.0.18"
   }

@@ -27,5 +27,12 @@ export const validationRules = [
     .trim()
     .notEmpty()
     .matches(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)
-    .withMessage("Invalid email entered"),
+    .withMessage("Invalid email entered")
+    .custom(async (value) => {
+      const email = await prisma.user.findUnique({ where: { email: value } });
+
+      if (email) {
+        throw new Error(`Email is already in use`);
+      }
+    })
 ];

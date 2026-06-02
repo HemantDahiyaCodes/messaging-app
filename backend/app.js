@@ -1,17 +1,16 @@
 import express from "express";
-import "dotenv/config";
-
-// Initalizing the app
+import "dotenv/config.js";
 const app = express();
 
-// File imports
-import { index } from "./routes/signup.js";
+// Middlewares configurations
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-app.use(express.urlencoded({extended: true}));
+// Routes
+import { signup } from "./routes/signup.js";
 
+app.use("/users", signup);
 
-app.use("/", index);
-
-app.listen(Number(process.env.PORT), () => {
-    console.log(`Server is running at ${process.env.PORT}`)
-})
+app.listen(8000, () => {
+  console.log("The server is running!");
+});

@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config.js";
 const app = express();
-const PORT = 8000;
+const PORT = process.env.PORT || 5000;
 
 // Middlewares configurations
 app.use(express.urlencoded({ extended: true }));
@@ -12,6 +12,6 @@ import { signup } from "./routes/signup.js";
 
 app.use("/users", signup);
 
-app.listen(Number(process.env.PORT) || PORT, () => {
+app.listen(PORT, () => {
   console.log("The server is running!");
 });

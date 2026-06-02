@@ -1,9 +1,9 @@
 import { Router } from "express";
-const index = Router();
+import { addUserToDb } from "../controllers/signupController.js";
+import { validationRules } from "../validator/signUpValidation.js";
 
-index.get("/", (req, res) => {
-    res.send("This is working!");
-    console.log("index route works")
-})
+const signup = Router();
 
-export {index};
+signup.post("/", validationRules, addUserToDb);
+
+export {signup};
